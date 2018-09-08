@@ -19,7 +19,7 @@ const char DEFAULT_MESSAGE[] = { 93, 223, 134, 215, 0, 254, 223, 0, 199, 191, 9,
 const int DEFAULT_MESSAGE_LENGTH = 48;
 
 /*
- * Returns the length of a string if it were padded to the nearest multiple of 8. 
+ * Returns the length of a string if it were padded to the nearest multiple of 8.
  *
  * @param str the string that we're looking to find the padded length for
  * @returns an integer describing the padded length of the message
@@ -83,7 +83,7 @@ void print_message_as_char_array(const char *message, int length) {
   printf("{ %d", (unsigned char) message[0]);
   for (int i = 1 ; i < length; i ++) {
     printf(", %d", (unsigned char) message[i]);
-   
+
   }
   printf("}\n");
 }
@@ -91,20 +91,24 @@ void print_message_as_char_array(const char *message, int length) {
 int main(int argc, char * argv[]) {
    const char *message_in = DEFAULT_MESSAGE;
   int length = DEFAULT_MESSAGE_LENGTH;
+  //cout << "****** test(before pad) *******"<<endl;
+ //cout << message_in[0] << " " <<message_in[1] <<endl;
   if (argc > 1) {
-      message_in = get_message(argc, argv);   
+      message_in = get_message(argc, argv);
       length = paddedLength(message_in);
       message_in = paddedCopy(message_in, length);
   }
 
   printf("Input message: \n");
    print_message(message_in, length);
+  // cout << "****** test (after pad) *******"<<endl;
+  //cout << message_in[0] << " " <<message_in[1];
 
   printf("\nOutput message: \n");
   try {
      char *message_out = extractMessage(message_in, length);
     print_message(message_out, length);
-    
+
     printf("\nWant to encode your own messages?  Here's the output as a char[%d] initializer:\n", length);
     print_message_as_char_array(message_out, length);
   } catch (const exception & e) {
