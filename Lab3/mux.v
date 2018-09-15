@@ -21,7 +21,7 @@ module mux4(out, A, B, C, D, control);
     wire w1, w2;
 
     mux2 mx1 (w1, A,B,control[0]);
-    mux2 mx2 (w2, A,B,control[0]);
+    mux2 mx2 (w2, C,D,control[0]);
 
     mux2 mx3 (out, w1,w2,control[1]);
 
