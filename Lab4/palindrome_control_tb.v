@@ -16,7 +16,7 @@ module palindrome_control_test;
     initial begin
         $dumpfile("palindrome_control.vcd");
         $dumpvars(0, palindrome_control_test);
-        #2      reset = 0;
+        #2      reset = 0;       // changed from #1 to #2 so that inputs don't transition with clock
         
 	// First, lets give an initial value for all
 	// registers equal to their 'index' in the register file
