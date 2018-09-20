@@ -16,7 +16,7 @@ module palindrome_control_test;
     initial begin
         $dumpfile("palindrome_control.vcd");
         $dumpvars(0, palindrome_control_test);
-        #1      reset = 0;
+        #2      reset = 0;
         
 	// First, lets give an initial value for all
 	// registers equal to their 'index' in the register file
