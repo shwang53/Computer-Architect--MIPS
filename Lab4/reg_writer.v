@@ -12,8 +12,8 @@ module reg_writer(done, regnum, direction, go, clock, reset);
   //add ~reset
 	// change wire to assign.
 
-	assign sGarbage_next = sGarbage & ~go & reset ;
-	assign sStart_next = ((sStart & go) | (sGarbage & go) | (sDone & go)) &~reset;
+	assign sGarbage_next =(sGarbage & ~go) | reset ;
+	assign sStart_next = ((sStart & go) | (sGarbage & go) | (sDone & go)) & ~reset;
 
 	assign sUp1_next = direction & ~go & sStart & ~reset ;//changed
 	assign sUp2_next = sUp1 & ~reset;
