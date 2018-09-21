@@ -1,0 +1,8 @@
+Grades for version committed on time
+	register: 0.0 / 5.0
+		Failed to compile on EWS.  Check that your code compiles, then email hazlett3 (at) illinois.edu if you think the grader has made a mistake.
+	reg_writer: 0.0 / 15.0
+		Failed to compile on EWS.  Check that your code compiles, then email hazlett3 (at) illinois.edu if you think the grader has made a mistake.
+Total: 0.0 / 20.0
+
+Final Score: 0.0 / 20.0
