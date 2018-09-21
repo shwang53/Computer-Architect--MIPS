@@ -8,6 +8,7 @@ module full_adder(sum, cout, a, b, cin);
     and a0(partial_c1, a, b);
     and a1(partial_c2, partial_s, cin);
     or  o1(cout, partial_c1, partial_c2);
+
 endmodule // full_adder
 
 `define ALU_ADD    3'h2
