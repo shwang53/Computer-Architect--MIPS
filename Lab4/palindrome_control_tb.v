@@ -17,12 +17,12 @@ module palindrome_control_test;
         $dumpfile("palindrome_control.vcd");
         $dumpvars(0, palindrome_control_test);
         #2      reset = 0;       // changed from #1 to #2 so that inputs don't transition with clock
-        
+
 	// First, lets give an initial value for all
 	// registers equal to their 'index' in the register file
-	for ( i = 0; i < 32; i = i + 1) 
+	for ( i = 0; i < 32; i = i + 1)
 		circuit.rf.r[i] <= i;
-	
+
 
 	// Test an even length palindrome
 	circuit.rf.r[11] <= 32'h12344321;
@@ -42,15 +42,45 @@ module palindrome_control_test;
 	# 10 base = 2; ending= 6; go = 1;
 	# 20 go = 0;
 
-	// A failing test
+  // A failing test
 	circuit.rf.r[7]  <= 32'h33333333;
 	circuit.rf.r[8]  <= 32'hC001D0D3;
 	circuit.rf.r[9]  <= 32'hFFFFFFFF;
 	circuit.rf.r[10] <= 32'hBAB3D0D3;
 	circuit.rf.r[11] <= 32'h33333333;
 	# 10  base = 7; ending= 11; go = 1;
+	# 40 go = 0;
+
+  // A failing test
+  // Test an even length palindrome
+  circuit.rf.r[12] <= 32'hffff4fff;
+  circuit.rf.r[13] <= 32'h00000000;
+  circuit.rf.r[14] <= 32'h12341234;
+  circuit.rf.r[15] <= 32'h33003300;
+  circuit.rf.r[16] <= 32'h33003300;
+  circuit.rf.r[17] <= 32'h12341234;
+  circuit.rf.r[18] <= 32'h00000000;
+  circuit.rf.r[19] <= 32'hffffffff;
+  # 10 base = 12; ending= 19; go = 1;
+  # 40 go = 0;
+
+  // A failing test
+	circuit.rf.r[7]  <= 32'h33333333;
+	circuit.rf.r[8]  <= 32'hC001D0D3;
+	circuit.rf.r[9]  <= 32'hFFFFFFFF;
+	circuit.rf.r[10] <= 32'hBAB3D0D3;
+	circuit.rf.r[11] <= 32'h33333333;
+	# 10  base = 7; ending= 11; go = 1;
+	# 40 go = 0;
+
+  // Test an even length palindrome
+	circuit.rf.r[11] <= 32'h12344321;
+	circuit.rf.r[12] <= 32'h00000000;
+	circuit.rf.r[13] <= 32'h00000000;
+	circuit.rf.r[14] <= 32'h12344321;
+	# 2 base = 11; ending= 14; go = 1;
 	# 20 go = 0;
-        // Add your own testcases here!
+
 
         #10 $finish;
     end
