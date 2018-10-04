@@ -10,11 +10,18 @@ module decoder_test;
              opcode = `OP_OTHER0; funct = `OP0_ADD; // see if addition still works
         # 10 opcode = `OP_OTHER0; funct = `OP0_SUB; // see if subtraction still works
         // test all of the others here
-        
+
         // as should all the new instructions from this week
         # 10 opcode = `OP_BEQ; zero = 0; // try a not taken beq
         # 10 opcode = `OP_BEQ; zero = 1; // try a taken beq
         // add more tests here!
+        # 10 opcode = `OP_LUI;
+	      # 10 opcode = `OP_OTHER0; funct = `OP0_SLT;
+	      # 10 opcode = `OP_LW;
+	      # 10 opcode = `OP_LBU;
+	      # 10 opcode = `OP_SW;
+
+
 
         # 10 $finish;
     end
