@@ -57,5 +57,5 @@ loop:
 	jr		  	$ra													  	# Exit
 
 final2:
-	move 	  	$v0,			$t0									  # return 0.
+	move 	  	$v0,			$t0									  # return i.
 	jr		    $ra								     				  # Exit
