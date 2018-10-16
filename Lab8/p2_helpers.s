@@ -1,7 +1,8 @@
 .globl get_square_begin
 get_square_begin:
 	# round down to the nearest multiple of 4
-	and	$a0, $a0, 0xfffffffc
+	div	$v0, $a0, 4
+	mul	$v0, $v0, 4
 	jr	$ra
 
 
