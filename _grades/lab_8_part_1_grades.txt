@@ -1,0 +1,18 @@
+Grades for version committed on time
+	dfs: 18.75 / 25
+		p1.s: warning: $sp was modified 5 times. Modifying $sp more than at the beginning and end of a function is error prone.
+		p1.s: warning: Found 4 instances of jr $ra. Using multiple return points is error prone. Consider merging return points into a single label.
+			*Passed test: dfs("tree1")
+			*Partially passed test: dfs("tree1") (evil) (callee-saved registers were modified)
+			*Passed test: dfs("tree2")
+			*Partially passed test: dfs("tree2") (evil) (callee-saved registers were modified)
+			*Passed test: dfs("tree3")
+			*Partially passed test: dfs("tree3") (evil) (callee-saved registers were modified)
+			*Passed test: dfs("tree4")
+			*Partially passed test: dfs("tree4") (evil) (callee-saved registers were modified)
+			*Passed test: dfs("tree5")
+			*Partially passed test: dfs("tree5") (evil) (callee-saved registers were modified)
+		
+Total: 18.75 / 25
+
+Final Score: 18.75 / 25
