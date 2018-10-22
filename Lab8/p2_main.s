@@ -168,7 +168,7 @@ main:
 board1_solve:
   	la	$a0, board1                # board with 4 big squares each missing 1 entry
   	jal	rule1
- 	bne	$v0, 0, board1_solve       # keep applying rule1 until the board is solved
+ 		bne	$v0, 0, board1_solve       # keep applying rule1 until the board is solved
   	la	$a0, board1
   	jal	print_board                # all "*" should be removed
 
