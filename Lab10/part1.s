@@ -38,7 +38,35 @@ REQUEST_PUZZLE_ACK      = 0xffff00d8
 .text
 main:
 	#Fill in your code here
+	li		$t4,	BONK_INT_MASK
+	or		$t4,	1
+	mtc0	$t4,	$12
+
+	li		$t0,	10
+	sw		$t0,	VELOCITY 
+
+infinite_loop:
+
+	move	$t5,	$a1 
+	lw		$a1,	RIGHT_WALL_SENSOR
+
+	bne		$a1,	0,	infinite_loop
+	bne		$t5,	1,	infinite_loop
+	
+	 
+	li		$t0,	90
+	sw		$t0,	ANGLE
+	sw		$0,		ANGLE_CONTROL
+
+
+
+
+	j		infinite_loop
+
+
+
     jr      $ra                         #ret
+			
 
 .kdata
 chunkIH:    .space 28
@@ -81,6 +109,14 @@ interrupt_dispatch:            # Interrupt:
 
 bonk_interrupt:
     #Fill in your code here
+	sw		$a1,	BONK_ACK 
+	li		$t0,	180
+	sw		$t0,	ANGLE
+	sw		$0,		ANGLE_CONTROL
+
+	li		$t0,	10
+	sw		$t0,	VELOCITY 
+	
     j       interrupt_dispatch    # see if other interrupts are waiting
 
 timer_interrupt:
