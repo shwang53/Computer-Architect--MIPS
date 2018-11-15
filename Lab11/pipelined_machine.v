@@ -80,7 +80,6 @@ module pipelined_machine(clk, reset);
     wire [4:0] before_wr_regnum;
     wire beforeRegWrite, beforeMemRead, beforeMemWrite, beforeMemToReg;
 
-
     // Forward
     wire forward1, forward2;
     assign forward1 = RegWrite & (wr_regnum == rs) & ~(rs == 0);
