@@ -25,6 +25,9 @@ private:
   uint32_t _num_block_offset_bits;
   uint32_t _num_index_bits;
   uint32_t _num_tag_bits;
+
+  uint32_t calculateLog(uint32_t n);
+
 };
 
 #endif
