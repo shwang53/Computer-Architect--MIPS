@@ -1,3 +1,4 @@
+
 #include "mandelbrot.h"
 #include <xmmintrin.h>
 
@@ -11,33 +12,46 @@
 int *
 cubic_mandelbrot_vector(float x[SIZE], float y[SIZE]) {
     static int ret[SIZE];
-    float x1, y1, x2, y2;
 
-    for (int i = 0; i < SIZE; i ++) {
-        x1 = y1 = 0.0;
+   __m128 varA1, varB1, varA2, varB2;
+
+    float temp[4];
+    float final[4];
+
+    for (int i = 0; i < SIZE; i += 4) {
+        //varA1 = varB1 = 0.0;
+        varA1 = _mm_loadu_ps(temp);
+        varB1 = _mm_loadu_ps(temp);
 
         // Run M_ITER iterations
         for (int j = 0; j < M_ITER; j ++) {
-            // Calculate x1^2 and y1^2
-            float x1_squared = x1 * x1;
-            float y1_squared = y1 * y1;
+            // Calculate varA1^2 and varB1^2
 
-            // Calculate the real piece of (x1 + (y1*i))^3 + (x + (y*i))
-            x2 = x1 * (x1_squared - 3 * y1_squared) + x[i];
+            __m128 varA1_squared = _mm_mul_ps(varA1, varA1);
+            __m128 varB1_squared = _mm_mul_ps(varB1, varB1);
 
-            // Calculate the imaginary portion of (x1 + (y1*i))^3 + (x + (y*i))
-            y2 = y1 * (3 * x1_squared - y1_squared) + y[i];
+            // Calculate the real piece of (varA1 + (varB1*i))^3 + (x + (y*i))
 
-            // Use the resulting complex number as the input for the next
+            varA2 = _mm_add_ps(_mm_mul_ps(varA1, _mm_sub_ps(varA1_squared, 3 * varB1_squared)), _mm_loadu_ps(&x[i]));
+
+            // Calculate the imaginary portion of (varA1 + (varB1*i))^3 + (x + (y*i))
+            varB2 = _mm_add_ps(_mm_mul_ps(varB1, _mm_sub_ps(3 * varA1_squared, varB1_squared)), _mm_loadu_ps(&y[i]));
+            // Use the finaling complex number as the input for the next
             // iteration
-            x1 = x2;
-            y1 = y2;
+
+            varA1 = varA2;
+            varB1 = varB2;
         }
 
-        // caculate the magnitude of the result;
+        // caculate the magnitude of the final;
         // we could take the square root, but we instead just
         // compare squares
-        ret[i] = ((x2 * x2) + (y2 * y2)) < (M_MAG * M_MAG);
+        _mm_storeu_ps(final, _mm_add_ps(_mm_mul_ps(varA2, varA2), _mm_mul_ps(varB2, varB2)));
+
+        ret[i+0] = final[0];
+        ret[i+1] = final[1];
+        ret[i+2] = final[2];
+        ret[i+3] = final[3];
     }
 
     return ret;
