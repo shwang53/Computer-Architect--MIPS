@@ -1,0 +1,4 @@
+SPIMbot Grade Report
+Did not qualify for tournament
+Max score over 4 runs: 0
+Lab score (scaled out of 60 with respect to baseline score): 0
