@@ -1,0 +1,15 @@
+Grades for version committed on time
+	mandelbrot: 0 / 50
+			*Failed test: Result not accurate
+		
+	compiler_vectorization: 0.0 / 30
+			*Failed test: t1 - Failed to compile.
+			*Failed test: t2 - Failed to compile.
+			*Failed test: t3 - Failed to compile.
+			*Failed test: t4 - Failed to compile.
+			*Failed test: t5 - Failed to compile.
+			*Failed test: t6 - Failed to compile.
+		
+Total: 0.0 / 80
+
+Final Score: 0.0 / 80
